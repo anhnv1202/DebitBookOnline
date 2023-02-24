@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet-mapping>
+        <servlet-name>ForgotPasswordServlet</servlet-name>
+        <url-pattern>/forgot</url-pattern>
+    </servlet-mapping>
+    <welcome-file-list>
+        <welcome-file>login</welcome-file>
+    </welcome-file-list>
+    <servlet>
+        <servlet-name>CheckAccountNameServlet</servlet-name>
+        <servlet-class>controllers.CheckAccountNameServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckCaptchaServlet</servlet-name>
+        <servlet-class>controllers.CheckCaptchaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckAuthServlet</servlet-name>
+        <servlet-class>controllers.CheckAuthServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ForgotPasswordServlet</servlet-name>
+        <servlet-class>controllers.ForgotPasswordServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CheckAccountNameServlet</servlet-name>
+        <url-pattern>/checkAccountName</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckCaptchaServlet</servlet-name>
+        <url-pattern>/checkCaptcha</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckAuthServlet</servlet-name>
+        <url-pattern>/checkauth</url-pattern>
+    </servlet-mapping>
+</web-app>

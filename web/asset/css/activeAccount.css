@@ -1,0 +1,20 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Feb 3, 2023, 12:41:01 PM
+    Author     : ASUS
+*/
+
+
+.background-image{
+    background-image: url(https://img.freepik.com/free-vector/multitasking-business-woman-working-office_107791-7933.jpg?w=1380&t=st=1675402663~exp=1675403263~hmac=e088c88b29ac701ee763e0a94ddfb836d679aed1d8fed6eb8224607021c5cd36);
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+}

@@ -1,0 +1,31 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Feb 3, 2023, 12:26:17 PM
+    Author     : ASUS
+*/
+
+body{
+     background-position: center;
+    background-color: rgba(180, 93, 93, 0.849);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #505050;
+    font-family: "Rubik", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.5;
+    text-transform: none;
+}
+.background-image{
+    background-image: url(https://cdn.shopify.com/s/files/1/0248/2598/7134/t/3/assets/OTPCoffeeBlackcurrantCacaoNibsBG-1646687101367-1647401608148-1647471492031.webp);
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+}
