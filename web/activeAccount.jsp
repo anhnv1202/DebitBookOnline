@@ -21,6 +21,7 @@
                     <div class="card py-5 px-5 ">
                         <h5 class="m-0">Reset Password</h5>
                         <input type="text" id="username" name="username" value="${param.username}">
+                        <input  type="hidden" id="token" name="token" value="${param.token}">
                         <span class="mobile-text">enter the New Password</span>
                         <div class="d-flex flex-row mt-5">
 

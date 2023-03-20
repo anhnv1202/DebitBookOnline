@@ -44,7 +44,7 @@
 
 
                         <div class="card-footer text-center">
-                            <button class="btn btn-success" id="resetbutton" type="submit" >Reset</button>
+                            <button class="btn btn-outline-light" id="resetbutton" type="submit" >Reset</button>
                         </div>
                     </div>
                 </form>

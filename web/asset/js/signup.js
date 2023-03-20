@@ -71,7 +71,7 @@ function isValidSignUp(username, password, email, recaptchaResponse) {
                     success: function (response) {
                         if (response === "true") {
                             modalMessage.innerHTML = "Please check your email to activate your account";
-                            showModal();
+                                showModal();
                              signupForm.submit();
                         } else {
                             modalMessage.innerHTML ="Please verify that you're not a robot.";
@@ -89,10 +89,14 @@ function isValidSignUp(username, password, email, recaptchaResponse) {
         }
     });
 }
-
-closeModalButton.addEventListener("click", function () {
-    hideModal();
+document.addEventListener('click', function (event) {
+    if (event.target.closest('#closeModalButton') || !event.target.closest('.modal-content')) {
+        hideModal();
+    }
 });
+
+
+
 
 
 

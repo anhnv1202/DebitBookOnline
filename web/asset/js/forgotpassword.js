@@ -5,6 +5,11 @@ const modalMessage = document.getElementById("modalMessage");
 const forgotForm = document.getElementById("forgotform");
 
 
+document.addEventListener('click', function (event) {
+    if (event.target.closest('#closeModalButton') || !event.target.closest('.modal-content')) {
+        hideModal();
+    }
+});
 
 function showModal() {
     informModal.style.display = "block";
@@ -70,10 +75,7 @@ function isValidForgot(username,recaptchaResponse) {
     });
 }
 
-closeModalButton.addEventListener("click", function () {
-    hideModal();
-});
 
-// Check if modal has been shown before
-const modalShown = localStorage.getItem("modalShown");
+
+
 

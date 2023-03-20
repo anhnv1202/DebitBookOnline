@@ -4,7 +4,10 @@
  */
 package controllers;
 
-import dal.UserModel;
+import dal.AccountDao;
+import dal.TokenDao;
+import dal.UserDao;
+import entities.Account;
 import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,10 +17,10 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import javax.xml.ws.Response;
+import utilities.ConfigManagement;
 import utilities.EmailSystem;
-import utilities.GlobalConstants;
 import utilities.TokenGenerator;
-import utilities.TokenCache;
 
 /**
  *
@@ -37,24 +40,25 @@ public class ForgotPasswordServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String username = request.getParameter("username");
-        UserModel userModel = new UserModel();
-
-        User u = userModel.getByUsername(username);
-        String oldPassword = u.getPassword();
-
+        Account account = new AccountDao().getAccountByUsername(username);
+        User user = new UserDao().getUserByUsername(username);
+        String oldPassword = account.getPassword();
         HashMap<String, Object> data = new HashMap<>();
-        data.put("username", u.getUsername());
+        data.put("username", username);
         data.put("expiry", new Date().getTime() + 1000 * 60 * 30); // 30 minutes
-        String text = "Please visit the following link to set a new password (valid for 30 minutes): \nhttp://" + GlobalConstants.HOST + "/reset?token=" + TokenGenerator.generate(data, oldPassword);
-        if (!u.getIsConfirmed()) {
-            text = "Vui lòng truy cập đường dẫn sau để xác nhận mật khẩu: \nhttp://" + GlobalConstants.HOST + "/verifyacc?token=" + TokenGenerator.generate(data, "ODB_Group1");
-            emailSystem.sendEmail("ODB (No-Reply", u.getEmail(), "[ODB] Verify Account", text);
-            TokenCache.cacheToken(text);
-        }else{
-        emailSystem.sendEmail("ODB (No-Reply", u.getEmail(), "[ODB] Password Recovery", text);
-
-        TokenCache.cacheToken(text);       
+        String text = "Please visit the following link to set a new password (valid for 30 minutes): \nhttp://" + ConfigManagement.getInstance().getConfigValue("HOST") + "/reset?token=" + TokenGenerator.generate(data, oldPassword);
+        String token = TokenGenerator.generate(data, oldPassword);
+        TokenDao tokenDao = new TokenDao();
+        if (!account.isConfirmed()) {
+            token = TokenGenerator.generate(data, "ODB_Group1");
+            text = "Please access the following link to confirm your password: \nhttp://" + ConfigManagement.getInstance().getConfigValue("HOST") + "/verifyacc?token=" + token;
+            emailSystem.sendEmail("ODB (No-Reply", user.getEmail(), "[ODB] Verify Account", text);
+            tokenDao.addToken(token);
+        } else {
+            emailSystem.sendEmail("ODB (No-Reply", user.getEmail(), "[ODB] Password Recovery", text);
+            tokenDao.addToken(token);
         }
+
         response.sendRedirect(".");
     }
 

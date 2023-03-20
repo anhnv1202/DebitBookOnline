@@ -19,4 +19,5 @@ Web Quản lý sổ ghi nợ
 - SMTP
 - reCaptcha V2
 - JWT (Remake base on JWT concept)
-- Websocket
+- Queue Service
+- Singleton Pattern

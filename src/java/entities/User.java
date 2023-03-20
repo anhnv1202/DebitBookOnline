@@ -9,23 +9,20 @@ package entities;
  * @author phanv
  */
 public class User {
-    public long id;
-    public String username;
-    public String password;
-    public String email;
-    public Boolean isConfirmed;
-    public Boolean isAdmin;
 
-    public User(long id, String username, String password, String email, Boolean isConfirmed, Boolean isAdmin) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.isConfirmed = isConfirmed;
-        this.isAdmin = isAdmin;
-    }
+    private long id;
+    private String fullName;
+    private String email;
+    private String phone;
 
     public User() {
+    }
+
+    public User(long id, String fullName, String email, String phone) {
+        this.id = id;
+        this.fullName = fullName;
+        this.email = email;
+        this.phone = phone;
     }
 
     public long getId() {
@@ -36,20 +33,12 @@ public class User {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
     public String getEmail() {
@@ -60,24 +49,12 @@ public class User {
         this.email = email;
     }
 
-    public Boolean getIsConfirmed() {
-        return isConfirmed;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setIsConfirmed(Boolean isConfirmed) {
-        this.isConfirmed = isConfirmed;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public Boolean getIsAdmin() {
-        return isAdmin;
-    }
-
-    public void setIsAdmin(Boolean isAdmin) {
-        this.isAdmin = isAdmin;
-    }
-
-   
-
-   
-    
 }

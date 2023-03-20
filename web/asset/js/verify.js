@@ -4,6 +4,11 @@ const closeModalButton = document.getElementById("closeModalButton");
 const modalMessage = document.getElementById("modalMessage");
 const verifyForm = document.getElementById("verifyform");
 
+document.addEventListener('click', function (event) {
+    if (event.target.closest('#closeModalButton') || !event.target.closest('.modal-content')) {
+        hideModal();
+    }
+});
 
 
 function showModal() {

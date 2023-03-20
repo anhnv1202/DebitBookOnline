@@ -9,7 +9,11 @@ function isValidPassword(password) {
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
     return passwordRegex.test(password);
 }
-
+document.addEventListener('click', function (event) {
+    if (event.target.closest('#closeModalButton') || !event.target.closest('.modal-content')) {
+        hideModal();
+    }
+});
 
 function showModal() {
     informModal.style.display = "block";
@@ -62,10 +66,4 @@ function isValidReset(password, recaptchaResponse) {
 
 
 
-
-
-
-closeModalButton.addEventListener("click", function () {
-    hideModal();
-});
 

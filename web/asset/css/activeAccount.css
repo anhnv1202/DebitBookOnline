@@ -9,7 +9,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 
 .background-image{
-    background-image: url(https://img.freepik.com/free-vector/multitasking-business-woman-working-office_107791-7933.jpg?w=1380&t=st=1675402663~exp=1675403263~hmac=e088c88b29ac701ee763e0a94ddfb836d679aed1d8fed6eb8224607021c5cd36);
+    
+     background-image: linear-gradient(to top, #ff9a9e 0%, #b97ca6 99%, #fecfef 100%);
         background-repeat: no-repeat;
         background-size: cover;
         position: fixed;
@@ -17,4 +18,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
         bottom: 0;
         right: 0;
         left: 0;
+}
+.card{
+      background-image: linear-gradient(to top, #ff9a9e 0%, #b97ca6 99%, #fecfef 100%);
+    border: 200px;
+    
+}
+input{
+    background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
 }

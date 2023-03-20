@@ -4,7 +4,9 @@
  */
 package controllers;
 
-import dal.UserModel;
+import dal.AccountDao;
+import dal.TokenDao;
+import entities.Account;
 import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -51,12 +53,15 @@ public class ResetPasswordServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String token = request.getParameter("token");
         String password = request.getParameter("password");
         String username = request.getParameter("username");
-        UserModel userModel = new UserModel();
-        User user = userModel.getByUsername(username);
-        user.setPassword(password);
-        userModel.updateUser(user);
+        AccountDao accountDao = new AccountDao();
+        Account account = accountDao.getAccountByUsername(username);
+        account.setPassword(password);
+        accountDao.updateAccount(account);
+        new TokenDao().deleteToken(token);
+
         response.sendRedirect(".");
     }
 

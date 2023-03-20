@@ -1,4 +1,5 @@
 package utilities;
+
 import entities.MailRequest;
 import java.io.UnsupportedEncodingException;
 import java.util.concurrent.BlockingQueue;
@@ -8,9 +9,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.mail.MessagingException;
-import utilities.SMTP;
 
 public class EmailSystem {
+
     private BlockingQueue<MailRequest> emailQueue = new LinkedBlockingQueue<>();
     private ExecutorService executor = Executors.newFixedThreadPool(10);
 
@@ -21,16 +22,17 @@ public class EmailSystem {
     }
 }
 
-
-
 class EmailSender implements Runnable {
+
     private SMTP smtp;
     private volatile boolean stop;
     private BlockingQueue<MailRequest> emailQueue;
+
     public EmailSender(BlockingQueue<MailRequest> emailQueue) {
         this.emailQueue = emailQueue;
         this.stop = false;
     }
+
     public void stop() {
         stop = true;
     }
@@ -40,10 +42,13 @@ class EmailSender implements Runnable {
         while (!stop) {
             try {
                 MailRequest mailRequest = emailQueue.take();
-                smtp= new SMTP(GlobalConstants.SMTP_HOST, GlobalConstants.SMTP_PORT, GlobalConstants.SMTP_ACCOUNT_EMAIL, GlobalConstants.SMTP_ACCOUNT_PASSWORD);
+                smtp = new SMTP(ConfigManagement.getInstance().getConfigValue("SMTP_HOST"), 
+                        ConfigManagement.getInstance().getConfigValue("SMTP_PORT"),
+                        ConfigManagement.getInstance().getConfigValue("SMTP_ACCOUNT_EMAIL"),
+                        ConfigManagement.getInstance().getConfigValue("SMTP_ACCOUNT_PASSWORD"));
                 smtp.connect();
-                smtp.sendMimeMessage(mailRequest.getSender(), mailRequest.getRecipient(), 
-                    mailRequest.getSubject(), mailRequest.getText());
+                smtp.sendMimeMessage(mailRequest.getSender(), mailRequest.getRecipient(),
+                        mailRequest.getSubject(), mailRequest.getText());
                 Thread.sleep(10000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -55,5 +60,4 @@ class EmailSender implements Runnable {
         }
     }
 
-    
 }

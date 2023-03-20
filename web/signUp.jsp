@@ -31,7 +31,10 @@
 
 
                 </form>
-                <div id="informModal" class="modal">
+               
+            </div>
+            <div class="overlay-container">
+                 <div id="informModal" class="modal">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h2>Inform</h2>
@@ -44,8 +47,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="overlay-container">
                 <div class="overlay">
                     <div class="overlay-panel overlay-right">
                         <h1>Hello, Friend!</h1>

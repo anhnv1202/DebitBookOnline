@@ -1,5 +1,7 @@
 package entities;
+
 public class MailRequest {
+
     private String sender;
     private String recipient;
     private String subject;

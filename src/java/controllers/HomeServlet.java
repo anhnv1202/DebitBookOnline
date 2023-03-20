@@ -3,8 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package routes;
+package controllers;
 
+import dal.UserDao;
+import entities.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,6 +14,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import utilities.ConfigManagement;
 
 /**
  *
@@ -23,7 +26,8 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        
+        ConfigManagement.getInstance();
+        request.getRequestDispatcher("HomePage.jsp").forward(request, response);
     } 
 
     /** 
@@ -36,7 +40,14 @@ public class HomeServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        String username = request.getParameter("username");
         
+//        UserDao user = new UserDao();        
+//        User u = user.getUserByUsername(username);     
+//        request.setAttribute("user", u);
+//        
+//        request.getRequestDispatcher("HomePage.jsp").forward(request, response);
+//        request.getRequestDispatcher("change.jsp").forward(request, response);
     }
 
     /** 

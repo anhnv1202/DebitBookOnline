@@ -32,4 +32,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     max-height: 300px;
     object-fit: contain;
   }
+ .debit-manage card{
+     
+       margin-top: 20px;
+  }
+
+  
+  .next{
+      text-align: end;
+  }
+  
  

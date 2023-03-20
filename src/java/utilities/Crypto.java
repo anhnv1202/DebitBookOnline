@@ -45,6 +45,7 @@ public class Crypto {
     public static String SHA256(String str) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
+            
             return bytesToHex(md.digest(str.getBytes()));
         } catch (NoSuchAlgorithmException e) {
             return null;
@@ -58,6 +59,10 @@ public class Crypto {
     public static String decode64(String data) {
         return new String(Base64.getDecoder().decode(data.getBytes()));
     }
-}
     
-
+    public static void main(String[] args) {
+            Crypto c=new Crypto();
+            c.SHA256("123");
+            System.out.println(c.SHA256("123"));
+    }
+}

@@ -3,6 +3,8 @@ package utilities;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -33,7 +35,7 @@ public class SMTP {
         this.password = password;
     }
 
-    public boolean connect() throws MessagingException {
+    public boolean connect() {
         Properties props = new Properties();
         props.put("mail.smtp.host", host);
         props.put("mail.smtp.port", port);
@@ -98,6 +100,5 @@ public class SMTP {
         msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient, false));
         Transport.send(msg);
     }
-
 
 }

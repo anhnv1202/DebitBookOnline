@@ -31,35 +31,36 @@
 
             </div>
             <div class="overlay-container">
+                <div id="informModal" class="modal">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Inform</h2>
+                        </div>
+                        <div class="modal-body">
+                            <p id="modalMessage"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="closeModalButton">Close</button>
+                        </div>
+                    </div>
+                </div>
                 <div class="overlay">
-                   
+
                     <div class="overlay-panel overlay-right">
                         <h1>Hello, Friend!</h1>
                         <p>Enter your personal details and start journey with us</p>
-                        <button class="ghost" id="signUp" onclick="window.location.href='signup';">Sign Up</button>
+                        <button class="ghost" id="signUp" onclick="window.location.href = 'signup';">Sign Up</button>
                     </div>
                 </div>
             </div>
         </div>
-        <div id="informModal" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>Inform</h2>
-                </div>
-                <div class="modal-body">
-                    <p id="modalMessage"></p>
-                </div>
-                <div class="modal-footer">
-                    <button id="closeModalButton">Close</button>
-                </div>
-            </div>
-        </div>
+
 
     </body>
-   
-   
+
+
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="asset/js/signin.js"></script>
-    
+
 </html>

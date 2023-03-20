@@ -44,11 +44,11 @@
 
 
                             <div class="card-footer">
-                                <button class="btn btn-success" id="getnewpassword">Get New Password</button>
+                                <button class="btn btn-outline-light" id="getnewpassword">Get New Password</button>
                             </div>
                         </form>
                         <form class="card mt-4 mb-3" action="login" method="get">
-                            <button class="btn btn-danger " type="submit">Back to Login</button>
+                            <button class="btn btn-outline-light " type="submit">Back to Login</button>
                         </form>
 
                     </div>

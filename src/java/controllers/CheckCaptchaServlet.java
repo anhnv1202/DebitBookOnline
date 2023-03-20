@@ -5,12 +5,11 @@
 package controllers;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import utilities.GlobalConstants;
+import utilities.ConfigManagement;
 import utilities.GoogleReCaptcha;
 
 /**
@@ -19,15 +18,14 @@ import utilities.GoogleReCaptcha;
  */
 public class CheckCaptchaServlet extends HttpServlet {
 
-   
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String captcha= request.getParameter("captcha");
-         GoogleReCaptcha gcaptcha = new GoogleReCaptcha(GlobalConstants.GOOGLE_RECAPTCHA_SECRET_KEY);
-         if (gcaptcha.checkCaptcha(captcha)){
-             response.getWriter().write("true");
-         }
+        String captcha = request.getParameter("captcha");
+         GoogleReCaptcha gcaptcha = new GoogleReCaptcha(ConfigManagement.getInstance().getConfigValue("GOOGLE_RECAPTCHA_SECRET_KEY"));
+        if (gcaptcha.checkCaptcha(captcha)) {
+            response.getWriter().write("true");
+        }
     }
 
     /**

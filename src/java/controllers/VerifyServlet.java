@@ -12,7 +12,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import dal.UserModel;
+import dal.AccountDao;
+import dal.TokenDao;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONException;
@@ -41,7 +42,6 @@ public class VerifyServlet extends HttpServlet {
 
             request.setAttribute("token", token);
             request.setAttribute("username", username);
-
             request.getRequestDispatcher("verify.jsp").forward(request, response);
         } catch (JSONException ex) {
             Logger.getLogger(VerifyServlet.class.getName()).log(Level.SEVERE, null, ex);
@@ -56,9 +56,10 @@ public class VerifyServlet extends HttpServlet {
         try {
             String token = request.getParameter("token");
             JSONObject json = TokenGenerator.decrypt(token);
-            UserModel userModel = new UserModel();
+            AccountDao userModel = new AccountDao();
             String username = json.getString("username");
             userModel.accountConfirmed(username);
+            new TokenDao().deleteToken(token);
             response.sendRedirect(".");
         } catch (IOException | JSONException e) {
 
