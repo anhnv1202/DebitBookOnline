@@ -27,7 +27,7 @@ import java.util.logging.Logger;
 public class DebtDetailDao extends DBContext {
 
     public List<DebtDetail> getDebtDetails(long debtId, int index, int pageSize, String sortField, String sortOrder, String idFrom, String idTo, String filterNote, String debtType, String amountFrom, String amountTo, String debtCreatedFrom, String debtCreatedTo, String createdFrom, String createdTo) {
-        List<DebtDetail> debtDetails = new ArrayList<DebtDetail>();
+        List<DebtDetail> debtDetails = new ArrayList<>();
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -130,17 +130,16 @@ public class DebtDetailDao extends DBContext {
         return debtDetails;
     }
 
-    
-     public long countDebtDetails(long debtId, String idFrom, String idTo, String filterNote, String debtType, String amountFrom, String amountTo, String debtCreatedFrom, String debtCreatedTo, String createdFrom, String createdTo) {
-       Connection con = null;
+    public long countDebtDetails(long debtId, String idFrom, String idTo, String filterNote, String debtType, String amountFrom, String amountTo, String debtCreatedFrom, String debtCreatedTo, String createdFrom, String createdTo) {
+        Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         long count = 0;
 
         try {
             con = connection();
-             String query = "SELECT COUNT(*) AS count FROM DebtDetail where DebtID=?";
-             if (!idFrom.isEmpty()) {
+            String query = "SELECT COUNT(*) AS count FROM DebtDetail where DebtID=?";
+            if (!idFrom.isEmpty()) {
                 query += " AND (ID >= ?)";
             }
             if (!idTo.isEmpty()) {
@@ -173,7 +172,7 @@ public class DebtDetailDao extends DBContext {
             }
             stmt = con.prepareStatement(query);
             stmt.setLong(1, debtId);
-           int parameterIndex = 2;
+            int parameterIndex = 2;
             if (!idFrom.isEmpty()) {
                 stmt.setString(parameterIndex++, idFrom);
             }
@@ -228,7 +227,6 @@ public class DebtDetailDao extends DBContext {
 
         return count;
     }
-    
 
     public boolean isFilenameExist(String filename) {
         boolean result = false;
@@ -276,13 +274,5 @@ public class DebtDetailDao extends DBContext {
 
         }
     }
-
-    public static void main(String[] args) {
-        DebtDetailDao dao = new DebtDetailDao();
-        List<DebtDetail> debtDetails = dao.getDebtDetails(1, 19, 5, "ID", "ASC","", "", "", "", "", "", "", "", "", "");
-        System.out.println(dao.countDebtDetails(1, "", "", "", "", "", "", "", "", "", ""));
-    }
-
-   
 
 }

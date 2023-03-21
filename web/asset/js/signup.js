@@ -71,7 +71,6 @@ function isValidSignUp(username, password, email, recaptchaResponse) {
                     success: function (response) {
                         if (response === "true") {
                             modalMessage.innerHTML = "Please check your email to activate your account";
-                                showModal();
                              signupForm.submit();
                         } else {
                             modalMessage.innerHTML ="Please verify that you're not a robot.";

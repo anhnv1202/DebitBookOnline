@@ -64,6 +64,7 @@
         }
     </style>
     <body>
+    
         <div class="d-flex" id="wrapper">
 
             <header>
@@ -72,46 +73,46 @@
                     <div class="fixed-top">
 
                         <div class="wraper">
-                             <div class="sidebar">
+                            <div class="sidebar">
 
-                            <div class="profile">
-                                <img src="./img/logo.png" alt="profile image">
-                                <h3>ODB Tín Dụng</h3>
-                                <p>Sổ ghi nợ ONLINE</p>
+                                <div class="profile">
+                                    <img src="./img/logo.png" alt="profile image">
+                                    <h3>ODB Tín Dụng</h3>
+                                    <p>Sổ ghi nợ ONLINE</p>
+                                </div>
+                                <!-- side menu bar -->
+                                <ul>
+                                    <li><a href="home">
+                                            <span class="icon"><i class="fas fa-home"></i></span>
+                                            <span class="Item">Trang chủ</span></a>
+                                    </li>
+                                    <li><a href="DebtsListServlet">
+                                            <span class="icon"><i class="fas fa-desktop"></i></span>
+                                            <span class="Item">Dịch vụ</span></a>
+                                    </li>
+
+                                    <c:if test="${sessionScope.isAdmin==true}">
+                                        <li>
+                                            <div class="ad">
+                                                <a ><span class="icon"><i class="fas fa-user-shield"></i></span>
+                                                    <span class="admin-btn Item">Admin</span></a>
+                                                <div class="admin-dropdown">
+                                                    <a href="ConfigManagerServlet"><span class="icon"><i class="fas fab fa-adversal"></i></span>
+                                                        <span class="admin-btn Item">Quản lý cấu hình</span></a>
+                                                    <a href="AccountManagerServlet"><span class="icon"><i class="fas fab fa-yahoo"></i></span>
+                                                        <span class="admin-btn Item">Quản lý tài khoản</span></a>
+                                                </div>
+                                            </div>
+
+                                        </li>
+                                    </c:if>
+                                    <li><a href="accControl">
+                                            <span class="icon"><i class="fas fa-cog"></i></span>
+                                            <span class="Item">Trang cá nhân</span></a>
+                                    </li>
+
+                                </ul>
                             </div>
-                            <!-- side menu bar -->
-                            <ul>
-                                <li><a href="home">
-                                        <span class="icon"><i class="fas fa-home"></i></span>
-                                        <span class="Item">Trang chủ</span></a>
-                                </li>
-                                <li><a href="DebtsListServlet">
-                                        <span class="icon"><i class="fas fa-desktop"></i></span>
-                                        <span class="Item">Dịch vụ</span></a>
-                                </li>
-                               
-                                 <c:if test="${sessionScope.isAdmin==true}">
-                               <li>
-                                    <div class="ad">
-                                        <a ><span class="icon"><i class="fas fa-user-shield"></i></span>
-                                        <span class="admin-btn Item">Admin</span></a>
-                                        <div class="admin-dropdown">
-                                            <a href="ConfigManagerServlet"><span class="icon"><i class="fas fab fa-adversal"></i></span>
-                                            <span class="admin-btn Item">Quản lý cấu hình</span></a>
-                                            <a href="AccountManagerServlet"><span class="icon"><i class="fas fab fa-yahoo"></i></span>
-                                            <span class="admin-btn Item">Quản lý tài khoản</span></a>
-                                        </div>
-                                    </div>
-
-                                </li>
-                                </c:if>
-                                <li><a href="accControl">
-                                        <span class="icon"><i class="fas fa-cog"></i></span>
-                                        <span class="Item">Trang cá nhân</span></a>
-                                </li>
-
-                            </ul>
-                        </div>
                             <!-- top menu bar -->
                             <div class="section">
 
@@ -595,7 +596,7 @@
 
                                         </div>
                                         <div class="card-body">
-                                            <form class="simple-ajax-form" action="adddebtor" method="post" name="myForm" id="addDebts" novalidate >
+                                            <form class="simple-ajax-form" action="adddebtor" method="post" name="myForm" id="addDebts" novalidate onsubmit="return(validate());">
                                                 <div class="form-group">
                                                     <label for="inputName"> <i class="fa fa-user" aria-hidden="true"></i> Họ
                                                         và tên
@@ -755,11 +756,10 @@
 
                                         </div>
                                         <div class="card-body">
-                                            <form class="needs-validation simple-ajax-form" action="updatedebtor" method="post" name="myForm2" novalidate >
+                                            <form class="needs-validation simple-ajax-form" action="updatedebtor" method="post" name="myForm2" novalidate onsubmit="return(validate2());">
                                                 <div class="form-group">
                                                     <input type="hidden" id="inputIDUpdate" name="id"/>
-                                                    <
-                                                    label for="inputNamee"> <i class="fa fa-user" aria-hidden="true"></i> Họ
+                                                    <label for="inputNamee"> <i class="fa fa-user" aria-hidden="true"></i> Họ
                                                         và tên
                                                         (*)</label>
                                                     <input type="text" class="form-control " id="inputNamee" name="name"

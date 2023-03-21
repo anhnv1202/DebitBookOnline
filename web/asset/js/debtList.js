@@ -177,7 +177,6 @@ function loadData() {
         }
     });
 }
-
 function debtDetail(id) {
     let currentPageDD = 1;
     let pageSizeDD = 5;
@@ -291,12 +290,6 @@ function debtDetail(id) {
             }
         });
     }
-    if($('#chitiet').is(':visible')) {
-        console.log("yes");
-      } else {
-        console.log("oke");
-      }
-    
     $(document).on("click", ".pageDD", function () {
         let page = parseInt($(this).data("page"));
 
@@ -513,7 +506,6 @@ $('.simple-ajax-form').submit(function (event) {
     event.preventDefault();
 
     // Sử dụng AJAX để gửi form
-    
     $.ajax({
         url: $(this).attr('action'),
         type: $(this).attr('method'),
@@ -529,7 +521,6 @@ $('.simple-ajax-form').submit(function (event) {
             console.error(errorThrown);
         }
     });
-
 });
 $(document).on("click", ".sortD", function () {
     let sortFieldd = $(this).data("field");
@@ -603,17 +594,26 @@ $("#pageSize").on("change", function () {
 
 
 $("#jumpToPage").on("change", function () {
-
-    let value = parseInt($(this).val());
-
-    if (value >= 1 && value <= totalPages) {
-        currentPage = value;
-        $("#jumpToPage").val(currentPage);
-        loadData();
-    }
+  let value = parseInt($(this).val());
+  if (value <= $(this).attr('min')) {
+      currentPage = parseInt($(this).attr('min'));
+  } else if (value >= $(this).attr('max')) {
+      currentPage = parseInt($(this).attr('max'));
+  } else {
+      currentPage = value;
+  }
+  $(this).val(currentPage);
+  loadData();
 });
 
-
+$("#jumpToPage").on("keydown", function (event) {
+  if (event.keyCode === 13) { //Kiểm tra phím Enter
+      let value = parseInt($(this).val());
+      currentPage = Math.min(Math.max(value, $(this).attr('min')), $(this).attr('max'));
+      $(this).val(currentPage);
+      loadData();
+  }
+})
 
 
 

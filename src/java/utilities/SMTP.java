@@ -17,79 +17,46 @@ import javax.mail.internet.MimeMessage;
 
 public class SMTP {
 
+    private static SMTP instance = null;
+    
     private String host;
     private String port;
-
     private String email;
     private String password;
-
     private Session session;
+    
+    private SMTP() {
+        this.host = ConfigManagement.getInstance().getConfigValue("SMTP_HOST");
+        this.port = ConfigManagement.getInstance().getConfigValue("SMTP_PORT");
+        this.email = ConfigManagement.getInstance().getConfigValue("SMTP_ACCOUNT_EMAIL");
+        this.password = ConfigManagement.getInstance().getConfigValue("SMTP_ACCOUNT_PASSWORD");
 
-    public SMTP() {
-    }
-
-    public SMTP(String host, String port, String email, String password) {
-        this.host = host;
-        this.port = port;
-        this.email = email;
-        this.password = password;
-    }
-
-    public boolean connect() {
         Properties props = new Properties();
         props.put("mail.smtp.host", host);
         props.put("mail.smtp.port", port);
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
-
+        
         Authenticator auth = new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
                 return new PasswordAuthentication(email, password);
             }
         };
-
-        session = Session.getInstance(props, auth);
-        return session != null;
+        
+        this.session = Session.getInstance(props, auth);
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public static synchronized SMTP getInstance() {
+        if (instance == null) {
+            instance = new SMTP();
+        }
+        return instance;
     }
 
-    public void setHost(String host) {
-        this.host = host;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setPort(String port) {
-        this.port = port;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getHost() {
-        return host;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getPort() {
-        return port;
-    }
-
-    public Session getSession() {
-        return session;
-    }
-
-    public void sendMimeMessage(String sender, String recipient, String subject, String text) throws AddressException, MessagingException, UnsupportedEncodingException {
+    public void sendMimeMessage(String sender, String recipient, String subject, String text) 
+            throws AddressException, MessagingException, UnsupportedEncodingException {
+        
         MimeMessage msg = new MimeMessage(session);
 
         msg.setFrom(new InternetAddress(email, sender));
@@ -98,7 +65,7 @@ public class SMTP {
         msg.setText(text, "UTF-8");
         msg.setSentDate(new Date());
         msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient, false));
+        
         Transport.send(msg);
     }
-
 }

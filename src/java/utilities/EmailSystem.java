@@ -42,12 +42,7 @@ class EmailSender implements Runnable {
         while (!stop) {
             try {
                 MailRequest mailRequest = emailQueue.take();
-                smtp = new SMTP(ConfigManagement.getInstance().getConfigValue("SMTP_HOST"), 
-                        ConfigManagement.getInstance().getConfigValue("SMTP_PORT"),
-                        ConfigManagement.getInstance().getConfigValue("SMTP_ACCOUNT_EMAIL"),
-                        ConfigManagement.getInstance().getConfigValue("SMTP_ACCOUNT_PASSWORD"));
-                smtp.connect();
-                smtp.sendMimeMessage(mailRequest.getSender(), mailRequest.getRecipient(),
+                 SMTP.getInstance().sendMimeMessage(mailRequest.getSender(), mailRequest.getRecipient(),
                         mailRequest.getSubject(), mailRequest.getText());
                 Thread.sleep(10000);
             } catch (InterruptedException e) {

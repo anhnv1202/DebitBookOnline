@@ -1,4 +1,31 @@
-
+//function validate() {
+//
+//    if (document.myForm.name.value == "") {
+//
+//        alert("Điền họ và tên !");
+//        
+//        // document.getElementById("Alertname").innerHTML = "Điền họ và tên !";
+//        document.myForm.name.focus();
+//        return false;
+//    }
+//    if (document.myForm.email.value == "") {
+//
+//        return true;
+//
+//    }
+//    var x = document.myForm.email.value;
+//    var atposition = x.indexOf("@");
+//    var dotposition = x.lastIndexOf(".");
+//    if (atposition < 1 || dotposition < (atposition + 2)
+//        || (dotposition + 2) >= x.length) {
+//            alert("Định dạng email chưa đúng !");
+//        // document.getElementById("AlertEmail").innerHTML = "Email không đúng định dạng !";
+//        return false;
+//    }
+//
+//
+//    return (true);
+//}
 function onlyNumberKey(evt) {
     var ASCIICode = (evt.which) ? evt.which : evt.keyCode;
     
@@ -11,7 +38,33 @@ function onlyNumberKey(evt) {
     }
     return false;  
 }
+function validate2() {
 
+    if (document.myForm2.name.value == "") {
+        alert("Điền họ và tên !");
+        // document.getElementById("Alertname2").innerHTML = "Điền họ và tên !";
+        document.myForm2.name.focus();
+
+        return false;
+    }
+    if (document.myForm2.email.value == "") {
+
+        return true;
+
+    }
+    var x = document.myForm2.email.value;
+    var atposition = x.indexOf("@");
+    var dotposition = x.lastIndexOf(".");
+    if (atposition < 1 || dotposition < (atposition + 2)
+        || (dotposition + 2) >= x.length) {
+            alert("Please enter a valid e-mail address.");
+        // document.getElementById("AlertEmail2").innerHTML = "Email không đúng định dạng !";
+        return false;
+    }
+
+
+    return (true);
+}
 
 const loadAddDebtor =()=>{
 
