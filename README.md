@@ -3,7 +3,7 @@
 Project SWP391-Group1
 
 ## Thành viên
-- Nguyễn Việt Anh  
+- Nguyễn Việt Anh (Leader main Developer) 
 - Lê Thị Dung  
 - Phan Viết Tú
 - Lê Hoàng Long
